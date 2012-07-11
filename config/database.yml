@@ -19,9 +19,12 @@ test:
   password: yousefabed
   host: localhost
 production:
-  adapter: postgresql
-  database: saferoadmaps
-  username: yousef
-  password: yousefabed
-  host: localhost
+	adapter:	postgresql
+	encoding:	unicode
+	pool:	5
+	database:	dclpv909k7k07m
+	username:	tgqygzstqfbzxc
+	password:	VR80t9jtTJ6kl_6AJHUgZ6-swW
+	host:	ec2-23-23-234-207.compute-1.amazonaws.com
+	port:	5432
 
