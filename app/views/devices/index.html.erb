@@ -1,0 +1,27 @@
+<h1>Listing devices</h1>
+
+<table>
+  <tr>
+    <th>Device name</th>
+    <th>Device uid</th>
+    <th>Google registration</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @devices.each do |device| %>
+  <tr>
+    <td><%= device.device_name %></td>
+    <td><%= device.device_uid %></td>
+    <td><%= device.google_registration %></td>
+    <td><%= link_to 'Show', device %></td>
+    <td><%= link_to 'Edit', edit_device_path(device) %></td>
+    <td><%= link_to 'Destroy', device, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Device', new_device_path %>

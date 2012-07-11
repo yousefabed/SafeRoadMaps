@@ -1,0 +1,20 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Device name:</b>
+  <%= @device.device_name %>
+</p>
+
+<p>
+  <b>Device uid:</b>
+  <%= @device.device_uid %>
+</p>
+
+<p>
+  <b>Google registration:</b>
+  <%= @device.google_registration %>
+</p>
+
+
+<%= link_to 'Edit', edit_device_path(@device) %> |
+<%= link_to 'Back', devices_path %>
