@@ -41,7 +41,7 @@ class DevicesController < ApplicationController
   # POST /devices.json
   def create
     @device = Device.new(params[:device])
-    
+    logger.info 'Device   '+ @device.to_s
      respond_to do |format| 
     dev = Device.find_by_device_uid(@device.device_uid)
     if !dev.nil?
