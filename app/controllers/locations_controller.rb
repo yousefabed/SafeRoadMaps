@@ -40,7 +40,7 @@ class LocationsController < ApplicationController
   # POST /locations.json
   def create
     @location = Location.new(params[:location])
-    @device = Device.find_by_device_uid(params[:device].device_uid])
+    @device = Device.find_by_device_uid(params[:device].device_uid)
     @location.device_id = @device.id
     respond_to do |format|
       if @location.save
