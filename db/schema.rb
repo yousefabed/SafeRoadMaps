@@ -22,6 +22,4 @@ ActiveRecord::Schema.define(:version => 20120711080924) do
     t.string   "phone_number"
   end
 
- 
-
 end
