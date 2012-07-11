@@ -1,4 +1,6 @@
 SafeRoadMaps::Application.routes.draw do
+  resources :locations
+
   post "send_message/create"
 
   resources :devices
