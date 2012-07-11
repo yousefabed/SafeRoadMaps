@@ -1,4 +1,6 @@
 SafeRoadMaps::Application.routes.draw do
+  post "send_message/create"
+
   resources :devices
 
   # The priority is based upon order of creation:

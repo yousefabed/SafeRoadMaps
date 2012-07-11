@@ -18,7 +18,17 @@
   <b>Phone Number:</b>
   <%= @device.phone_number %>
 </p>
-
+<%=
+form_tag(:controller => "send_message", :action => "create", :method => "post") do  %>
+  <div class="field">
+    <%= label_tag :Send_Message %><br />
+    <%= text_area_tag :message %>
+   <%= hidden_field_tag :id, @device.id %> 
+  </div>
+  <div class="actions">
+    <%= submit_tag("Send") %>
+  </div>
+<% end %>
 
 <%= link_to 'Edit', edit_device_path(@device) %> |
 <%= link_to 'Back', devices_path %>

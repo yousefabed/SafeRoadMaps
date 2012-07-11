@@ -61,7 +61,9 @@ module SafeRoadMaps
 
     # Enable the asset pipeline
     config.assets.enabled = true
-
+    
+    #to fix content length problem
+#	config.middleware.use Rack::ContentLength
     # Version of your assets, change this if you want to expire all your assets
     config.assets.version = '1.0'
   end
