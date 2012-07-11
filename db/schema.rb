@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120711051845) do
+ActiveRecord::Schema.define(:version => 20120711080924) do
 
   create_table "devices", :force => true do |t|
     t.string   "device_name"
@@ -19,6 +19,7 @@ ActiveRecord::Schema.define(:version => 20120711051845) do
     t.string   "google_registration"
     t.datetime "created_at",          :null => false
     t.datetime "updated_at",          :null => false
+    t.string   "phone_number"
   end
 
   create_table "orders", :force => true do |t|

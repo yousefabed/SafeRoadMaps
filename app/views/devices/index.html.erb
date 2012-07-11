@@ -5,6 +5,7 @@
     <th>Device name</th>
     <th>Device uid</th>
     <th>Google registration</th>
+	<th>Phone Number</th>
     <th></th>
     <th></th>
     <th></th>
@@ -15,6 +16,7 @@
     <td><%= device.device_name %></td>
     <td><%= device.device_uid %></td>
     <td><%= device.google_registration %></td>
+    <td><%= device.phone_number %></td>
     <td><%= link_to 'Show', device %></td>
     <td><%= link_to 'Edit', edit_device_path(device) %></td>
     <td><%= link_to 'Destroy', device, method: :delete, data: { confirm: 'Are you sure?' } %></td>
