@@ -39,9 +39,14 @@ class LocationsController < ApplicationController
   # POST /locations
   # POST /locations.json
   def create
-    @location = Location.new(params[:location])
-    @device = Device.find_by_device_uid(params[:device_uid])
+    @location = Location.new()
+    @location.lat = params[:lat]
+    @location.lng = params[:lng]
+    temp = params[:device]; 
+    logger.info "device : "+temp.to_s
+    if(@device = Device.find_by_device_uid(temp))
     @location.device_id = @device.id
+    end
     respond_to do |format|
       if @location.save
         format.html { redirect_to @location, notice: 'Location was successfully created.' }
