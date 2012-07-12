@@ -23,7 +23,7 @@ class ApplicationController < ActionController::Base
 	logger.info 'gis server responded with' + x.code
     if(!json['features'].empty?)
     	alert = Alert.new
-    	alert.message = 'Alert'
+    	alert.message = "Alert.Alert. You're approaching dangerous roads. Use caution." 
     	alert.location_id = location.id
     	alert.gis_message = json['features'].to_s
     	alert.save
