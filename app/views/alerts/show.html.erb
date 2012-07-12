@@ -5,7 +5,8 @@
 	<p>You are approaching dangerous roads.<p>
 	<p>Use caution.</p>
 	</div>
+		<%= link_to 'Hide', pages_path , :class => 'btn btn-inverse' %>
+ <hr/>
 	<img src="<%= "http://maps.googleapis.com/maps/api/staticmap?center=#{@alert.location.lat},#{@alert.location.lng}&zoom=13&size=200x200&sensor=false" %>">
-   <hr/>
-	<%= link_to 'Hide', pages_path , :class => 'btn btn-inverse' %>
+  
 </div>
