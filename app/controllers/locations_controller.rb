@@ -1,4 +1,8 @@
+require "uri"
+require "net/http"
+
 class LocationsController < ApplicationController
+
   # GET /locations
   # GET /locations.json
   def index
@@ -40,23 +44,29 @@ class LocationsController < ApplicationController
   # POST /locations.json
   def create
     @location = Location.new()
-    @location.lat = params[:lat]
-    @location.lng = params[:lng]
+    @location.lat = 34.063938#params[:lat]
+    @location.lng = -118.293204#params[:lng]
+    
     temp = params[:device_uid]; 
     logger.info "device : "+temp.to_s
     @device = Device.find_by_device_uid(temp)
     if(!@device.nil?)
     @location.device_id = @device.id
+    #call gis service
+    url ="http://134.173.236.103/ArcGIS/rest/services/SRM_FARS_Data_Alert_Service/MapServer/0/query?text=&geometry=#{@location.lng}%2C#{@location.lat}&geometryType=esriGeometryPoint&inSR=4326&spatialRel=esriSpatialRelIntersects&relationParam=&objectIds=&where=&time=&returnIdsOnly=false&returnGeometry=false&maxAllowableOffset=&outSR=&outFields=Alert&f=pjson"
+ #    url =  "http://134.173.236.103/ArcGIS/rest/services/SRM_FARS_Data_Alert_Service/MapServer/0/query?text=&geometry=#{@location.lng}%2C#{@location.lat}&f=pjson"
+      x = Net::HTTP.get_response(URI.parse(url))
+    json = JSON.parse(x.body)
+    logger.info 'url' + url
+    logger.info "GIS Full :" +x.body
+    logger.info "GIS : "+json['features'].to_s
+    if(!json['features'].empty?)
+    a = send(@location.google_registration,'Alert')
     end
-    respond_to do |format|
-      if @location.save
-        format.html { redirect_to @location, notice: 'Location was successfully created.' }
-        format.json { render json: @location, status: :created, location: @location }
-      else
-        format.html { render action: "new" }
-        format.json { render json: @location.errors, status: :unprocessable_entity }
-      end
+     respond_to  { head :no_content }
+    
     end
+   
   end
 
   # PUT /locations/1
@@ -86,4 +96,5 @@ class LocationsController < ApplicationController
       format.json { head :no_content }
     end
   end
+  
 end
