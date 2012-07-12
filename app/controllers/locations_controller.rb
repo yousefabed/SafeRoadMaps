@@ -42,9 +42,10 @@ class LocationsController < ApplicationController
     @location = Location.new()
     @location.lat = params[:lat]
     @location.lng = params[:lng]
-    temp = params[:device]; 
+    temp = params[:device_uid]; 
     logger.info "device : "+temp.to_s
-    if(@device = Device.find_by_device_uid(temp))
+    @device = Device.find_by_device_uid(temp)
+    if(!@device.nil?)
     @location.device_id = @device.id
     end
     respond_to do |format|
