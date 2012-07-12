@@ -3,8 +3,8 @@ class ApplicationController < ActionController::Base
   def send_notification(alert)
   	uri = URI.parse('https://android.googleapis.com/gcm/send')
   	api_key = 'AIzaSyDnyXvByw2Q2qzCt5S-2MHV8J5fuTox5l4'
-  	logger.info alert.to_s
-	params = "collapse_key=score_update&registration_id=#{alert.location.device.google_registration}&data.score=5&data.message=#{alert.message}"
+  	logger.info alert_path(alert)
+	params = "collapse_key=score_update&registration_id=#{alert.location.device.google_registration}&data.url=#{alert_path(alert)}&data.message=#{alert.message}"
   	puts "Reg ID = #{@device.google_registration}"
   	request = Net::HTTP::Post.new(uri.request_uri) 
  	request.add_field("Authorization", "key="+api_key)
