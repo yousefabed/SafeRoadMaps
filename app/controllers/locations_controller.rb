@@ -44,8 +44,8 @@ class LocationsController < ApplicationController
   # POST /locations.json
   def create
     @location = Location.new()
-    @location.lat = 34.063938#params[:lat]
-    @location.lng = -118.293204#params[:lng] 
+    @location.lat = params[:lat] #34.063938
+    @location.lng = params[:lng] #-118.293204
     temp = params[:device_uid];   
     @device = Device.find_by_device_uid(temp.to_s)
     logger.info "device : "+@device['google_registration'].to_s
