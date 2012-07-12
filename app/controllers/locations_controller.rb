@@ -45,31 +45,23 @@ class LocationsController < ApplicationController
   def create
     @location = Location.new()
     @location.lat = 34.063938#params[:lat]
-    @location.lng = -118.293204#params[:lng]
-    
-    temp = params[:device_uid]; 
-    
+    @location.lng = -118.293204#params[:lng] 
+    temp = params[:device_uid];   
     @device = Device.find_by_device_uid(temp.to_s)
     logger.info "device : "+@device['google_registration'].to_s
     if(!@device.nil?)
-    @location.device_id = @device.id
-    #call gis service
-    url ="http://134.173.236.103/ArcGIS/rest/services/SRM_FARS_Data_Alert_Service/MapServer/0/query?text=&geometry=#{@location.lng}%2C#{@location.lat}&geometryType=esriGeometryPoint&inSR=4326&spatialRel=esriSpatialRelIntersects&relationParam=&objectIds=&where=&time=&returnIdsOnly=false&returnGeometry=false&maxAllowableOffset=&outSR=&outFields=Alert&f=pjson"
- #    url =  "http://134.173.236.103/ArcGIS/rest/services/SRM_FARS_Data_Alert_Service/MapServer/0/query?text=&geometry=#{@location.lng}%2C#{@location.lat}&f=pjson"
-      x = Net::HTTP.get_response(URI.parse(url))
-    json = JSON.parse(x.body)
-    logger.info 'url' + url
-    logger.info "GIS Full :" +x.body
-    logger.info "GIS : "+json['features'].to_s
-    if(!json['features'].empty?)
-    
-    a = send_notification(@device.id.to_s,'Alert')
+		@location.device_id = @device.id
+		@location.save
+		#call gis service
+		alert = query_gis_server(@location)
+	    if(alert) # if there is an alert send notification 
+   		 	a = send_notification(alert)
+   		 	logger.info 'message sent ' + a
+   		 end
     end
-     respond_to  { head :no_content }
-    
-    end
-   
+     respond_to  { head :no_content }   
   end
+
 
   # PUT /locations/1
   # PUT /locations/1.json

@@ -1,10 +1,11 @@
 SafeRoadMaps::Application.routes.draw do
+  
+  resources :alerts
   resources :locations
-
   post "send_message/create"
-
   resources :devices
-
+  resources :pages
+  root :to => 'pages#index'
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

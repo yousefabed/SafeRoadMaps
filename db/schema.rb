@@ -11,7 +11,15 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120711211359) do
+ActiveRecord::Schema.define(:version => 20120712045830) do
+
+  create_table "alerts", :force => true do |t|
+    t.string   "message"
+    t.integer  "location_id"
+    t.text     "gis_message"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
 
   create_table "devices", :force => true do |t|
     t.string   "device_name"
@@ -30,6 +38,22 @@ ActiveRecord::Schema.define(:version => 20120711211359) do
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
- 
+
+  create_table "orders", :force => true do |t|
+    t.string   "order_name"
+    t.date     "order_date"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+    t.integer  "user_id"
+  end
+
+  create_table "users", :force => true do |t|
+    t.string   "first_name"
+    t.string   "last_name"
+    t.string   "email"
+    t.string   "phone_number"
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
+  end
 
 end
