@@ -390,17 +390,17 @@ a:active {
   width: 50px;
   height: 50px;
 }
-.swatch-base span:nth-child(1) {
+.swatch-base .n1 {
   background-color: rgba(45, 53, 62, 0.9);
 }
-.swatch-base span:nth-child(2) {
+.swatch-base .n2 {
   background-color: rgba(45, 53, 62, 0.8);
 }
-.swatch-base span:nth-child(3) {
+.swatch-base .n3 {
   background-color: rgba(45, 53, 62, 0.7);
 }
-.swatch-base span:nth-child(4) {
-  background-color: rgba(45, 53, 62, 0.6);
+.swatch-base .n4 {
+  background-color: rgba(76, 82, 88, 0.36);
 }
 .swatch-alert span:nth-child(1) {
   background-color: rgba(252, 248, 227, 0.9);
