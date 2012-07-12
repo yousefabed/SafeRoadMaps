@@ -48,8 +48,9 @@ class LocationsController < ApplicationController
     @location.lng = -118.293204#params[:lng]
     
     temp = params[:device_uid]; 
-    logger.info "device : "+temp.to_s
-    @device = Device.find_by_device_uid(temp)
+    
+    @device = Device.find_by_device_uid(temp.to_s)
+    logger.info "device : "+@device['google_registration'].to_s
     if(!@device.nil?)
     @location.device_id = @device.id
     #call gis service
@@ -61,7 +62,8 @@ class LocationsController < ApplicationController
     logger.info "GIS Full :" +x.body
     logger.info "GIS : "+json['features'].to_s
     if(!json['features'].empty?)
-    a = send(@location.google_registration,'Alert')
+    
+    a = send_notification(@device.id.to_s,'Alert')
     end
      respond_to  { head :no_content }
     

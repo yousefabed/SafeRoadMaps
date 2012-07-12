@@ -1,8 +1,7 @@
 class ApplicationController < ActionController::Base
-  protect_from_forgery
-    
-   def send2(mydevice, message)
-    
+  protect_from_forgery  
+  def send_notification(mydevice, message)
+  if(!message.empty? && !mydevice.empty?)
   uri = URI.parse('https://android.googleapis.com/gcm/send')
   api_key = 'AIzaSyDnyXvByw2Q2qzCt5S-2MHV8J5fuTox5l4'
   logger.info mydevice.to_s
@@ -23,6 +22,7 @@ class ApplicationController < ActionController::Base
  	puts "Response #{response.code} #{response.message}: #{response.body}"
    	end
    	response.code
+   	end
  end
   
 end
