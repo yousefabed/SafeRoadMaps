@@ -11,7 +11,9 @@ class SimulateController < ApplicationController
       	uri = URI.parse('https://android.googleapis.com/gcm/send')
       	api_key = 'AIzaSyDnyXvByw2Q2qzCt5S-2MHV8J5fuTox5l4'
       	logger.info (alert.location.device)
-      	googleReg = 'APA91bEZR7EvrwO_rtdcAMpz9e-QnZym52ZNfGilyUbW7_QxGwUImjqMtm8--ypv-YTsvCbfqd7zW813PJEOFVlcmO5GuQ7l6lNcrIP800NgjNEBaVL1bQYLyBUax_auyPZgWHp66GB2llUImZfzSRBPHk1gmwvkRw'
+      	googleReg ='APA91bEWdeqabLNpbLJCbVbhOLWH2j2KFgo2XWjPicXYljsL3IqJbNuzaHEO0Hrs6LEk_7vGdQ13Qb1K1VrjauLj06l1SQlqSfC7J9iF5g_4QKpORfuKCC_QyonFr-nkIL7hqkac6qYW5PLRSEM0f5AflnAc9eB-PQ'
+      	# 'APA91bEZR7EvrwO_rtdcAMpz9e-QnZym52ZNfGilyUbW7_QxGwUImjqMtm8--ypv-YTsvCbfqd7zW813PJEOFVlcmO5GuQ7l6lNcrIP800NgjNEBaVL1bQYLyBUax_auyPZgWHp66GB2llUImZfzSRBPHk1gmwvkRw'
+      	
     	params = "collapse_key=score_update&registration_id=#{googleReg}&data.url=#{alert_path(alert)}&data.message=#{alert.message}"
       	puts "Reg ID = #{googleReg}"
       	request = Net::HTTP::Post.new(uri.request_uri) 
@@ -23,11 +25,10 @@ class SimulateController < ApplicationController
        response =  res.start {|http| http.request(request) }
      	puts "Response #{response.code} #{response.message}: #{response.body}"
       respond_to do |format|
-         format.xml { render :text =>' <?xml version="1.0" encoding="UTF-8"?>
+         format.xml { render :xml =>'<?xml version="1.0" encoding="UTF-8"?>
          <Response>
              <Hangup/>
-         </Response>
-           ' }  
+         </Response>' }  
     end
     
     
