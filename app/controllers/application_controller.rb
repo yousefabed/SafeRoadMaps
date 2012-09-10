@@ -5,7 +5,7 @@ class ApplicationController < ActionController::Base
   	api_key = 'AIzaSyDnyXvByw2Q2qzCt5S-2MHV8J5fuTox5l4'
   	logger.info alert_path(alert)
 	params = "collapse_key=score_update&registration_id=#{alert.location.device.google_registration}&data.url=#{alert_path(alert)}&data.message=#{alert.message}"
-  	puts "Reg ID = #{@device.google_registration}"
+  	puts "Reg ID = #{alert.location.device.google_registration}"
   	request = Net::HTTP::Post.new(uri.request_uri) 
  	request.add_field("Authorization", "key="+api_key)
  	#request.add_field("Content-Type", "application/json")
