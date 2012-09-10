@@ -27,7 +27,7 @@ class SimulateController < ApplicationController
       respond_to do |format|
          format.xml { render :xml =>'<?xml version="1.0" encoding="UTF-8"?>
          <Response>
-             <Hangup/>
+                  <Say>An alert has been sent. Good bye</Say>
          </Response>' }  
     end
     
