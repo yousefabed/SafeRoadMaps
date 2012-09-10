@@ -25,12 +25,13 @@ gem 'jquery-rails'
 # to add rspect testing framework 
 group :development do
  gem 'rspec-rails'
- gem "autotest"
+ gem 'annotate', '~> 2.4.1.beta' 
 end
 
 group :test do
   gem 'rspec'
   gem "autotest"
+  gem 'autotest-growl'
 end
 
 

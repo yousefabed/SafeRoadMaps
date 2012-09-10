@@ -11,6 +11,7 @@ class LocationsController < ApplicationController
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @locations }
+      format.xml { render xml: @location}
     end
   end
 
@@ -48,8 +49,9 @@ class LocationsController < ApplicationController
     @location.lng = params[:lng] #-118.293204
     temp = params[:device_uid];   
     @device = Device.find_by_device_uid(temp.to_s)
-    logger.info "device : "+@device['google_registration'].to_s
+   
     if(!@device.nil?)
+       logger.info "device : "+@device['google_registration'].to_s
 		@location.device_id = @device.id
 		@location.save
 		#call gis service

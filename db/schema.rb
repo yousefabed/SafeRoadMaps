@@ -39,21 +39,4 @@ ActiveRecord::Schema.define(:version => 20120712045830) do
     t.datetime "updated_at", :null => false
   end
 
-  create_table "orders", :force => true do |t|
-    t.string   "order_name"
-    t.date     "order_date"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-    t.integer  "user_id"
-  end
-
-  create_table "users", :force => true do |t|
-    t.string   "first_name"
-    t.string   "last_name"
-    t.string   "email"
-    t.string   "phone_number"
-    t.datetime "created_at",   :null => false
-    t.datetime "updated_at",   :null => false
-  end
-
 end

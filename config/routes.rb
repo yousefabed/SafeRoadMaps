@@ -1,5 +1,6 @@
 SafeRoadMaps::Application.routes.draw do
   
+  resources :tom
   resources :alerts
   resources :locations
   post "send_message/create"

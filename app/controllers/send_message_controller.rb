@@ -25,5 +25,7 @@ class SendMessageController < ApplicationController
  	 end
     end
    	end
- end
+   	end
+   
+ 
 end
