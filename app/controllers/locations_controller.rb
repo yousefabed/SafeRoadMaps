@@ -56,7 +56,7 @@ class LocationsController < ApplicationController
 		@location.save
 		#call gis service
 		alert = query_gis_server(@location)
-	    if(alert) # if there is an alert send notification 
+	    if(alert ) # if there is an alert send notification 
    		 	a = send_notification(alert)
    		 	logger.info 'message sent ' + a
    		 end

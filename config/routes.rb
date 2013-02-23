@@ -4,6 +4,7 @@ SafeRoadMaps::Application.routes.draw do
   resources :locations
   post "send_message/create"
   get "simulate/show"
+  get "pages/safe"
   resources :devices
   resources :pages
   root :to => 'pages#index'

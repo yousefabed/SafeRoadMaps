@@ -24,7 +24,6 @@ class AlertsController < ApplicationController
   # GET /alerts/new.json
   def new
     @alert = Alert.new
-
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @alert }

@@ -5,7 +5,7 @@
     <th>Message</th>
     <th>Location</th>
     <th>Gis message</th>
-    <th></th>
+    <th>Created At</th>
     <th></th>
     <th></th>
   </tr>
@@ -15,6 +15,7 @@
     <td><%= alert.message %></td>
     <td><%= alert.location_id %></td>
     <td><%= alert.gis_message %></td>
+<td><%= alert.created_at %></td>
     <td><%= link_to 'Show', alert %></td>
     <td><%= link_to 'Edit', edit_alert_path(alert) %></td>
     <td><%= link_to 'Destroy', alert, method: :delete, data: { confirm: 'Are you sure?' } %></td>
