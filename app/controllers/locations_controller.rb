@@ -60,6 +60,7 @@ class LocationsController < ApplicationController
    		 	a = send_notification(alert)
    		 	logger.info 'message sent ' + a
    		 end
+     		
     end
      respond_to  { head :no_content }   
   end
