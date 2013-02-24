@@ -34,7 +34,7 @@ class ApplicationController < ActionController::Base
     	alert
     else 
       alert = Alert.new
-      	alert.message = "You are driving in safer raods now" 
+      	alert.message = "You are driving in safer roads now." 
       	alert.location_id = location.id
       	alert.gis_message = nil
       	alert.save
