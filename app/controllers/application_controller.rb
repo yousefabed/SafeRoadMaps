@@ -4,9 +4,12 @@ class ApplicationController < ActionController::Base
   	uri = URI.parse('https://android.googleapis.com/gcm/send')
   	api_key = 'AIzaSyDnyXvByw2Q2qzCt5S-2MHV8J5fuTox5l4'
   	logger.info alert_path(alert)
-  	alertUrl = alert_path(alert).nil? ? "/pages/safe" : alert_path(alert)
-	params = "collapse_key=score_update&registration_id=#{alert.location.device.google_registration}&data.url=#{alertUrl}&data.message=#{alert.message}"
+	params = "collapse_key=score_update&registration_id=#{alert.location.device.google_registration}&data.url=#{alert_path(alert)}&data.message=#{alert.message}"
+	if (alert.gis_message.nil?)
+	  	params = "collapse_key=score_update&registration_id=#{alert.location.device.google_registration}&data.url=/pages/safe&data.message=#{alert.message}"
   	puts "Reg ID = #{alert.location.device.google_registration}"
+	end
+		logger.info params
   	request = Net::HTTP::Post.new(uri.request_uri) 
  	request.add_field("Authorization", "key="+api_key)
  	#request.add_field("Content-Type", "application/json")
@@ -33,7 +36,7 @@ class ApplicationController < ActionController::Base
       alert = Alert.new
       	alert.message = "You are driving in safer raods now" 
       	alert.location_id = location.id
-      	alert.gis_message = json['features'].to_s
+      	alert.gis_message = nil
       	alert.save
       	alert
     end
