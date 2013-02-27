@@ -1,5 +1,5 @@
 class Alert < ActiveRecord::Base
-  attr_accessible :gis_message, :location_id, :message
+  attr_accessible :gis_message, :location_id, :message, :alert_type
     belongs_to :location
 end
 # == Schema Information
@@ -12,5 +12,5 @@ end
 #  gis_message :text
 #  created_at  :datetime        not null
 #  updated_at  :datetime        not null
-#
+#  alert_type  :text
 

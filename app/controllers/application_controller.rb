@@ -4,9 +4,9 @@ class ApplicationController < ActionController::Base
   	uri = URI.parse('https://android.googleapis.com/gcm/send')
   	api_key = 'AIzaSyDnyXvByw2Q2qzCt5S-2MHV8J5fuTox5l4'
   	logger.info alert_path(alert)
-	params = "collapse_key=score_update&registration_id=#{alert.location.device.google_registration}&data.url=#{alert_path(alert)}&data.message=#{alert.message}"
+	params = "collapse_key=score_update&registration_id=#{alert.location.device.google_registration}&data.url=#{alert_path(alert)}&data.alertType=#{alert.alert_type}&data.message=#{alert.message}"
 	if (alert.gis_message.nil?)
-	  	params = "collapse_key=score_update&registration_id=#{alert.location.device.google_registration}&data.url=/pages/safe&data.message=#{alert.message}"
+	  	params = "collapse_key=score_update&registration_id=#{alert.location.device.google_registration}&data.url=/pages/safe&data.alertType=#{alert.alert_type}&data.message=#{alert.message}"
   	puts "Reg ID = #{alert.location.device.google_registration}"
 	end
 		logger.info params
@@ -27,16 +27,18 @@ class ApplicationController < ActionController::Base
 	logger.info 'gis server responded with' + x.code
     if(!json['features'].empty?)
     	alert = Alert.new
-    	alert.message = "Alert.Alert. You're approaching dangerous roads. Use caution." 
+    	alert.message = "Alert.Alert. You're approaching dangerous spots. Use caution." 
     	alert.location_id = location.id
     	alert.gis_message = json['features'].to_s
+    	alert.alert_type = "Red"
     	alert.save
     	alert
     else 
       alert = Alert.new
-      	alert.message = "You are driving in safer roads now." 
+      	alert.message = "You've exited the danger zone." 
       	alert.location_id = location.id
       	alert.gis_message = nil
+      	alert.alert_type = "Yellow"
       	alert.save
       	alert
     end
